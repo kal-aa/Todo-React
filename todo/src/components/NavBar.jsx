@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const active = (isActive) =>
-    isActive ? "bg-black text-white px-4 py-2 rounded-lg" : "";
+    isActive ? "bg-red-200 p-2 rounded-lg" : "";
 
   return (
     <div className="flex justify-between py-5 px-5 bg-slate-200">

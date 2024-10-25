@@ -2,7 +2,7 @@ import NavBar from "./components/NavBar";
 import AddPage from "./page/AddPage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./page/HomePage";
-import Todospage from "./page/TodosPage";
+import Todopage from "./page/TodoPage";
 
 const App = () => {
   return (
@@ -16,8 +16,8 @@ const App = () => {
           <Route path="/add-todo">
             <AddPage />
           </Route>
-          <Route path="/todos/:id">
-            <Todospage />
+          <Route path="/todo/:id">
+            <Todopage />
           </Route>
         </Switch>
       </div>
