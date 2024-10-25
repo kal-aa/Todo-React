@@ -1,28 +1,53 @@
-import { useState } from "react";
-import {toast} from 'react-toastify'
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import {toast} from "react-toastify"
 
-const AddTodo = ({ go, loading }) => {
+const EditPage = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("08:00");
+  const [todo, setTodo] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const navigate = useHistory();
+  const url = "http://localhost:7000/data/" + id;
 
-  const submit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setTodo(data);
+        setLoading(false);
+        setTitle(data.title)
+        setBody(data.body)
+        setDate(data.date)
+        setTime(data.time)
+      });
+  }, []);
 
+  const submit = () => {
     const data = {
       title,
       body,
       date,
       time,
     };
-    go(data);
-    toast.success('Added Successfully')
+    fetch(url, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then(() => {
+      navigate.go(-2);
+      toast.success('Edit Saved')
+    });
   };
 
   return (
     <div className="mx-10 my-10 max-w-xl">
-      <h1 className="text-center text-4xl font-medium">Add a Todo List</h1>
+      <h1 className="text-center text-4xl font-medium">Edit a Todo List</h1>
       <form onSubmit={submit} className="input-div">
         <label htmlFor="title">Title</label>
         <input
@@ -60,23 +85,13 @@ const AddTodo = ({ go, loading }) => {
           onChange={(e) => setTime(e.target.value)}
         />
         <div className="flex justify-center">
-          {!loading && (
-            <button className="bg-red-500 rounded-lg px-4 py-2 text-white">
-              Add
-            </button>
-          )}
-          {loading && (
-            <button
-              disabled
-              className="bg-red-500 rounded-lg px-4 py-2 text-white"
-            >
-              Adding...
-            </button>
-          )}
+          <button className="bg-red-500 rounded-lg px-4 py-2 text-white">
+            Edit
+          </button>
         </div>
       </form>
     </div>
   );
 };
 
-export default AddTodo;
+export default EditPage;
