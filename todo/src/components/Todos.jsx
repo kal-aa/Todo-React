@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { FaHandPointRight } from "react-icons/fa";
 
 const Todos = () => {
   const [todos, setTodos] = useState([]);
@@ -38,6 +39,7 @@ const Todos = () => {
                   className="px-5 flex items-center space-x-40 hover:shadow-2xl"
                 >
                   <h2 className="text-2xl text-red-500 w-40">{todo.title}</h2>
+                  <FaHandPointRight className="text-black hidden md:block"/>
                   <p className="font-bold text-red-700">{todo.date}</p>
                 </Link>
               </li>

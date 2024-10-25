@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import {toast} from "react-toastify"
+import { FaEdit } from "react-icons/fa";
 
 const EditPage = () => {
   const [title, setTitle] = useState("");
@@ -87,6 +88,7 @@ const EditPage = () => {
         <div className="flex justify-center">
           <button className="bg-red-500 rounded-lg px-4 py-2 text-white">
             Edit
+            <FaEdit className="inline ml-1 mb-1"/>
           </button>
         </div>
       </form>

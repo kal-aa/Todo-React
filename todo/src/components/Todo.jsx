@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaRegClock } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 const Todo = () => {
   const [todo, setTodo] = useState([]);
@@ -33,7 +35,9 @@ const Todo = () => {
       <p className="text-xl capitalize mb-2">{todo.body}</p>
       <div>
         <p className="inline-block">{todo.date}</p>
-        <p className="inline-block ml-5">{todo.time}</p>
+        <p className="inline-block ml-5">
+          {todo.time} <FaRegClock className="inline mb-1"/>
+        </p>
       </div>
       <button
         title="Clear this todo"
@@ -41,6 +45,7 @@ const Todo = () => {
         className="bg-red-500 p-4 py-2 text-white mt-2 rounded-xl"
       >
         Done
+        <FaCheck className="inline ml-1"/>
       </button>
       <NavLink
         to={`/edit/${todo.id}`}

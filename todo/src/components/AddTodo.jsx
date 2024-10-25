@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
+import { FaPen } from "react-icons/fa";
 
 const AddTodo = ({ go, loading }) => {
   const [title, setTitle] = useState("");
@@ -17,12 +18,16 @@ const AddTodo = ({ go, loading }) => {
       time,
     };
     go(data);
-    toast.success('Added Successfully')
+    toast.success(`'${title}' Added Successfully`);
   };
 
   return (
     <div className="mx-10 my-10 max-w-xl">
-      <h1 className="text-center text-4xl font-medium">Add a Todo List</h1>
+      <h1 className="text-center text-4xl font-medium">
+        Adc
+        <FaPen className="inline text-3xl mb-2 -rotate-45 text-red-900 -ml-4 -mt-3" /> a
+        Todo List
+      </h1>
       <form onSubmit={submit} className="input-div">
         <label htmlFor="title">Title</label>
         <input

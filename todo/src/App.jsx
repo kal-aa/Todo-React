@@ -7,6 +7,8 @@ import NotFoundPage from "./page/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import EditPage from "./page/EditPage";
+import Footer from "./page/Footer";
+import ContactUs from "./page/ContactUs";
 
 const App = () => {
   return (
@@ -17,15 +19,22 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <HomePage />
+            <Footer />
           </Route>
           <Route path="/add-todo">
             <AddPage />
+            <Footer />
           </Route>
           <Route path="/todo/:id">
             <Todopage />
+            <Footer />
           </Route>
           <Route path="/edit/:id">
             <EditPage />
+            <Footer />
+          </Route>
+          <Route path="/contact-us">
+            <ContactUs />
           </Route>
           <Route path="*">
             <NotFoundPage />
