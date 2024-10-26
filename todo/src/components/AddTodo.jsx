@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { FaPen } from "react-icons/fa";
 
 const AddTodo = ({ go, loading }) => {
@@ -18,7 +17,6 @@ const AddTodo = ({ go, loading }) => {
       time,
     };
     go(data);
-    toast.success(`'${title}' Added Successfully`);
   };
 
   return (
@@ -43,7 +41,7 @@ const AddTodo = ({ go, loading }) => {
         <textarea
           id="body"
           placeholder="Todo's Description"
-          rows={3}
+          rows={2}
           value={body}
           className="first-letter"
           onChange={(e) => setBody(e.target.value)}
@@ -66,7 +64,7 @@ const AddTodo = ({ go, loading }) => {
         />
         <div className="flex justify-center">
           {!loading && (
-            <button className="bg-red-500 rounded-lg px-4 py-2 text-white">
+            <button className="bg-red-500 rounded-lg px-4 py-2 text-white hover:bg-red-400">
               Add
             </button>
           )}

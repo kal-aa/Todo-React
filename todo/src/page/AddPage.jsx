@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import AddTodo from "../components/AddTodo";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddPage = () => {
   const [loading, setLoading] = useState(false);
@@ -9,14 +10,17 @@ const AddPage = () => {
   const went = (data) => {
     setLoading(true);
 
-    fetch("http://localhost:7000/data", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }).then(() => {
-      setLoading(false);
-      navigate.push('/')
-    });
+    setTimeout(() => {
+      fetch("http://localhost:7000/data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }).then(() => {
+        setLoading(false);
+        navigate.push("/");
+        toast.success(`'${data.title}' Added Successfully`);
+      });
+    }, 2000);
   };
 
   return <AddTodo go={went} loading={loading} />;

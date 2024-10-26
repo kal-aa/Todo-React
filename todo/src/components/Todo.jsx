@@ -42,14 +42,14 @@ const Todo = () => {
       <button
         title="Clear this todo"
         onClick={handleClick}
-        className="bg-red-500 p-4 py-2 text-white mt-2 rounded-xl"
+        className="bg-red-500 p-4 py-2 text-white mt-2 rounded-xl hover:bg-red-400"
       >
         Done
         <FaCheck className="inline ml-1"/>
       </button>
       <NavLink
         to={`/edit/${todo.id}`}
-        className="bg-red-500 p-5 py-3 text-white mt-2 rounded-xl ml-5"
+        className="bg-red-500 p-5 py-3 text-white mt-2 rounded-xl ml-5 hover:bg-red-400"
       >
         Edit
       </NavLink>
