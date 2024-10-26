@@ -64,7 +64,7 @@ const EditPage = () => {
         <textarea
           id="body"
           placeholder="Todo's Description"
-          rows={3}
+          rows={2}
           value={body}
           className="first-letter"
           onChange={(e) => setBody(e.target.value)}
@@ -86,7 +86,7 @@ const EditPage = () => {
           onChange={(e) => setTime(e.target.value)}
         />
         <div className="flex justify-center">
-          <button className="bg-red-500 rounded-lg px-4 py-2 text-white">
+          <button className="bg-red-500 rounded-lg px-4 py-2 text-white hover:bg-red-400">
             Edit
             <FaEdit className="inline ml-1 mb-1"/>
           </button>

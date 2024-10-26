@@ -7,7 +7,7 @@ import NotFoundPage from "./page/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import EditPage from "./page/EditPage";
-import Footer from "./page/Footer";
+import Footer from "./components/Footer";
 import ContactUs from "./page/ContactUs";
 
 const App = () => {
