@@ -13,8 +13,8 @@ import ContactUs from "./page/ContactUs";
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <BrowserRouter>
-          <Header />
+      <BrowserRouter basename={import.meta.env.VITE_PUBLIC_PATH || "/"}>
+        <Header />
         <div className="flex-grow">
           <ToastContainer />
           <Switch>

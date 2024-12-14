@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kal-aa.github.io/todo-react",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,10 +10,9 @@
     "preview": "vite preview",
     "server": "json-server --watch public/assets/data.json --port 7000",
     "start": "concurrently \"npm run dev\" \"npm run server\"",
-    "predeploy": "npm run build", 
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "vercel --prod"
   },
-  
   "dependencies": {
     "concurrently": "^9.1.0",
     "json-server": "^1.0.0-beta.3",
@@ -36,7 +34,6 @@
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.13",
-    "gh-pages": "^6.2.0",
     "globals": "^15.11.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",

@@ -17,7 +17,7 @@ const EditPage = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const url = `http://localhost:7000/data/${id}`;
+  const url = `/assets/data.json/${id}`;
 
   useEffect(() => {
     fetch(url)
