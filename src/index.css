@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: serif;
+  margin-bottom: -40px
+}
+input, textarea {
+  display: block;
+}
+.input-div input, .input-div textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+/* .navigate a:hover {
+  background: black;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 6px
+  
+  navbar
+} */
+.content {
+  max-width: 700px;
+  margin: 40px auto;
+}
+ol {
+  list-style-type: decimal;
+}
