@@ -17,9 +17,9 @@ const EditPage = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const url = `/assets/data.json/${id}`;
 
   useEffect(() => {
+    const url = `https://todo-backend-ten-tau.vercel.app/select-todo/${id}`;
     fetch(url)
       .then((res) => {
         if (!res.ok) {
@@ -33,11 +33,11 @@ const EditPage = () => {
       .catch((err) => {
         console.error("Error fetching todo", err);
       });
-  }, [url]);
+  }, [id]);
 
-  const submit = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
-
+    const url = `https://todo-backend-ten-tau.vercel.app/update-todo/${id}`;
     fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -56,7 +56,11 @@ const EditPage = () => {
   };
 
   return (
-    <EditTodo formData={formData} submit={submit} handleChange={handleChange} />
+    <EditTodo
+      formData={formData}
+      handleEdit={handleEdit}
+      handleChange={handleChange}
+    />
   );
 };
 

@@ -8,9 +8,8 @@ const Todo = () => {
   const [todo, setTodo] = useState([]);
   const { id } = useParams();
   const navigate = useHistory();
-  const url = "http://localhost:7000/data/" + id;
-
   useEffect(() => {
+    const url = `https://todo-backend-ten-tau.vercel.app/select-todo/${id}`;
     fetch(url)
       .then((res) => {
         if (!res.ok) {
@@ -24,9 +23,10 @@ const Todo = () => {
       .catch((error) => {
         console.error("Error fetching todo", error);
       });
-  }, [url]);
+  }, [id]);
 
-  const handleClick = () => {
+  const handleDelete = () => {
+    const url = `https://todo-backend-ten-tau.vercel.app/delete-todo/${id}`;
     fetch(url, {
       method: "DELETE",
     })
@@ -34,7 +34,7 @@ const Todo = () => {
         if (!res.ok) {
           throw new Error("Error deleting todo");
         }
-        navigate.push("/");
+        navigate.goBack();
         toast.success("Deleted Successfully");
       })
       .catch((error) => {
@@ -55,14 +55,14 @@ const Todo = () => {
         </div>
         <button
           title="Clear this todo"
-          onClick={handleClick}
+          onClick={handleDelete}
           className="bg-red-500 p-4 py-2 text-white mt-2 rounded-xl hover:bg-red-600"
         >
           Done
           <FaCheck className="inline ml-1" />
         </button>
         <NavLink
-          to={`/edit/${todo.id}`}
+          to={`/edit/${todo.todo_id}`}
           className="bg-red-500 p-5 py-3 text-white mt-2 rounded-xl ml-5 hover:bg-red-600"
         >
           Edit

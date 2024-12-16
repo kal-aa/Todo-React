@@ -1,11 +1,11 @@
 import { FaEdit } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-const EditTodo = ({ formData, submit, handleChange }) => {
+const EditTodo = ({ formData, handleEdit, handleChange }) => {
   return (
     <div className="my-10 px-[10%] sm:px-[20%] md:px-[30%] w-full">
       <h1 className="text-center text-4xl font-medium">Edit a Todo List</h1>
-      <form onSubmit={submit} className="input-div">
+      <form onSubmit={handleEdit} className="input-div">
         <label htmlFor="title">Title</label>
         <input
           id="title"
@@ -61,7 +61,7 @@ const EditTodo = ({ formData, submit, handleChange }) => {
 
 EditTodo.propTypes = {
   formData: PropTypes.object.isRequired,
-  submit: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

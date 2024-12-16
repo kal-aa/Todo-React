@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaPen } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-const AddTodo = ({ go, loading }) => {
+const AddTodo = ({ handleSubmit, loading }) => {
   const [formData, setFormData] = useState({
     title: "",
     body: "",
@@ -17,8 +17,7 @@ const AddTodo = ({ go, loading }) => {
 
   const submit = (e) => {
     e.preventDefault();
-
-    go(formData);
+    handleSubmit(formData);
   };
 
   return (
@@ -82,7 +81,7 @@ const AddTodo = ({ go, loading }) => {
 };
 
 AddTodo.propTypes = {
-  go: PropTypes.func,
+  handleSubmit: PropTypes.func,
   loading: PropTypes.bool,
 };
 

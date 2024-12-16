@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaEllipsisV } from "react-icons/fa";
 import { useState } from "react";
 import { FaTasks } from "react-icons/fa";
 
-const NavBar = () => {
+const Header = () => {
   const [isElipActive, setIsElipActive] = useState(true);
+  const location = useLocation().pathname;
+  const param = location.split("/");
+  const id = param[param.length - 1];
   const active = (isActive) =>
     isActive ? "font-bold text-red-500" : "font-bold hover:text-red-500";
 
@@ -18,10 +21,10 @@ const NavBar = () => {
 
       <div className="flex items-center">
         <nav className={isElipActive ? "space-x-4" : "hidden sm:block"}>
-          <NavLink exact to="/" className={active}>
-            Home
+          <NavLink exact to={`/todos/${id}`} className={active}>
+            Todos
           </NavLink>
-          <NavLink to="/add-todo" className={active}>
+          <NavLink to={`/add-todo/${id}`} className={active}>
             Add-Todo
           </NavLink>
         </nav>
@@ -39,4 +42,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Header;

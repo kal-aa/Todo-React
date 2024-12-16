@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     base: env.VITE_PUBLIC_PATH || "/",
     publicDir: "public",
     server: {
-      port: 4000,
+      port: 3000,
     },
   };
 });

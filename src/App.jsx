@@ -9,19 +9,23 @@ import "react-toastify/ReactToastify.css";
 import EditPage from "./page/EditPage";
 import Footer from "./components/Footer";
 import ContactUs from "./page/ContactUs";
+import LogInOrSignUp from "./page/LogInOrSignUp";
 
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <BrowserRouter basename={import.meta.env.VITE_PUBLIC_PATH || "/"}>
+        <ToastContainer />
         <Header />
         <div className="flex-grow">
-          <ToastContainer />
           <Switch>
             <Route exact path="/">
+              <LogInOrSignUp />
+            </Route>
+            <Route path="/todos/:id">
               <HomePage />
             </Route>
-            <Route path="/add-todo">
+            <Route path="/add-todo/:id">
               <AddPage />
             </Route>
             <Route path="/todo/:id">
