@@ -9,10 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch public/assets/data.json --port 7000",
-    "start": "concurrently \"npm run dev\" \"npm run server\"",
     "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "concurrently": "^9.1.0",
