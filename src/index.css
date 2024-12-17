@@ -16,18 +16,27 @@ input, textarea {
   border-radius: 4px;
   padding: 2px 4px;
 }
-/* .navigate a:hover {
-  background: black;
-  color: white;
-  padding: 2px 4px;
-  border-radius: 6px
-  
-  navbar
-} */
 .content {
   max-width: 700px;
   margin: 40px auto;
 }
 ol {
   list-style-type: decimal;
+}
+
+/* LogOrSign */
+.logSignContainer {
+  @apply flex flex-col justify-center items-center space-y-5 md:flex-row md:space-y-0 md:space-x-5;
+}
+
+.btnStyles {
+  @apply bg-blue-400 px-3 py-2 text-white font-bold rounded-xl hover:scale-105 hover:bg-blue-500 text-sm;
+}
+
+.inputStyles {
+  @apply border-2 py-1.5 mx-2 pl-3 rounded-lg outline-none hover:border-red-200 focus-within:bg-fuchsia-50;
+}
+
+.errorText {
+  @apply ml-3 text-red-600 max-w-48 break-words text-center leading-4
 }

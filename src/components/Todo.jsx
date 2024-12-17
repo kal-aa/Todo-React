@@ -1,49 +1,11 @@
-import { useEffect, useState } from "react";
-import { NavLink, useHistory, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
 import { FaRegClock } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
+import PropTypes from "prop-types";
 
-const Todo = () => {
-  const [todo, setTodo] = useState([]);
-  const { id } = useParams();
-  const navigate = useHistory();
-  useEffect(() => {
-    const url = `https://todo-backend-ten-tau.vercel.app/select-todo/${id}`;
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error fetching todo");
-        }
-        return res.json();
-      })
-      .then((todo) => {
-        setTodo(todo);
-      })
-      .catch((error) => {
-        console.error("Error fetching todo", error);
-      });
-  }, [id]);
-
-  const handleDelete = () => {
-    const url = `https://todo-backend-ten-tau.vercel.app/delete-todo/${id}`;
-    fetch(url, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error deleting todo");
-        }
-        navigate.goBack();
-        toast.success("Deleted Successfully");
-      })
-      .catch((error) => {
-        console.error("Error deleting todo", error);
-      });
-  };
-
+const Todo = ({ todo, handleDelete }) => {
   return (
-    <div className="flex items-center justify-center mt-10">
+    <div className="flex items-center justify-center mt-[10%] md:mt-[5%]">
       <div className="bg-yellow-200 py-20 px-10 rounded-xl w-full mx-[10%] md:mx-[30%]">
         <h1 className="text-4xl mb-5 -ml-2 italic capitalize">{todo.title}</h1>
         <p className="text-xl capitalize mb-2">{todo.body}</p>
@@ -62,7 +24,7 @@ const Todo = () => {
           <FaCheck className="inline ml-1" />
         </button>
         <NavLink
-          to={`/edit/${todo.todo_id}`}
+          to={`/todos/${todo.email_id}/edit/${todo.todo_id}`}
           className="bg-red-500 p-5 py-3 text-white mt-2 rounded-xl ml-5 hover:bg-red-600"
         >
           Edit
@@ -70,6 +32,11 @@ const Todo = () => {
       </div>
     </div>
   );
+};
+
+Todo.propTypes = {
+  todo: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func,
 };
 
 export default Todo;

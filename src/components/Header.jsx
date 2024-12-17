@@ -7,7 +7,7 @@ const Header = () => {
   const [isElipActive, setIsElipActive] = useState(true);
   const location = useLocation().pathname;
   const param = location.split("/");
-  const id = param[param.length - 1];
+  const email_id = param[2];
   const active = (isActive) =>
     isActive ? "font-bold text-red-500" : "font-bold hover:text-red-500";
 
@@ -21,10 +21,10 @@ const Header = () => {
 
       <div className="flex items-center">
         <nav className={isElipActive ? "space-x-4" : "hidden sm:block"}>
-          <NavLink exact to={`/todos/${id}`} className={active}>
+          <NavLink exact to={`/todos/${email_id}`} className={active}>
             Todos
           </NavLink>
-          <NavLink to={`/add-todo/${id}`} className={active}>
+          <NavLink to={`/add-todo/${email_id}`} className={active}>
             Add-Todo
           </NavLink>
         </nav>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const EditTodo = ({ formData, handleEdit, handleChange }) => {
   return (
-    <div className="my-10 px-[10%] sm:px-[20%] md:px-[30%] w-full">
+    <div className="mt-[10%] px-[10%] sm:px-[20%] md:px-[30%] w-full">
       <h1 className="text-center text-4xl font-medium">Edit a Todo List</h1>
       <form onSubmit={handleEdit} className="input-div">
         <label htmlFor="title">Title</label>

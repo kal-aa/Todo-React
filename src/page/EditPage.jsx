@@ -10,7 +10,7 @@ const EditPage = () => {
     date: "",
     time: "",
   });
-  const { id } = useParams();
+  const { todo_id } = useParams();
   const history = useHistory();
 
   const handleChange = (e) => {
@@ -19,7 +19,7 @@ const EditPage = () => {
   };
 
   useEffect(() => {
-    const url = `https://todo-backend-ten-tau.vercel.app/select-todo/${id}`;
+    const url = `https://todo-backend-ten-tau.vercel.app/select-todo/${todo_id}`;
     fetch(url)
       .then((res) => {
         if (!res.ok) {
@@ -28,16 +28,46 @@ const EditPage = () => {
         return res.json();
       })
       .then((data) => {
-        setFormData(data);
+        const fullTime = data.time.split(" "); // 08:00, AM
+        const amPm = fullTime[1]; //  AM
+        const hourMin = fullTime[0].split(":"); // 08, 00
+        const hour = parseInt(hourMin[0]); // 08
+        const min = hourMin[1]; // 00
+        let time;
+        if (hour === 12 && amPm === "AM") {
+          time = `00:${min}`;
+        } else if (amPm === "AM") {
+          time = hour < 10 ? `0${hour}:${min}` : `${hour}:${min}`;
+        } else {
+          const adjustedHour = hour === 12 ? 12 : hour + 12;
+          time = `${adjustedHour}:${min}`;
+        }
+        setFormData({ ...data, time });
       })
       .catch((err) => {
         console.error("Error fetching todo", err);
       });
-  }, [id]);
+  }, [todo_id]);
 
   const handleEdit = (e) => {
     e.preventDefault();
-    const url = `https://todo-backend-ten-tau.vercel.app/update-todo/${id}`;
+    const time = formData.time;
+    const split = time.split(":");
+    const hours = parseInt(split[0]);
+    const minutes = split[1];
+
+    if (hours === 0) {
+      formData.time = `12:${minutes} AM`;
+    } else if (hours < 12) {
+      formData.time = `${hours}:${minutes} AM`;
+    } else if (hours === 12) {
+      formData.time = `12:${minutes} PM`;
+    } else {
+      const adjustedHours = hours - 12;
+      formData.time = `${adjustedHours}:${minutes} PM`;
+    }
+
+    const url = `https://todo-backend-ten-tau.vercel.app/update-todo/${todo_id}`;
     fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

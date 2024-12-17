@@ -6,11 +6,11 @@ import { toast } from "react-toastify";
 const AddPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useHistory();
-  const { id } = useParams();
+  const { email_id } = useParams();
 
   const handleSubmit = (data) => {
     setLoading(true);
-    fetch(`https://todo-backend-ten-tau.vercel.app/create-todo/${id}`, {
+    fetch(`https://todo-backend-ten-tau.vercel.app/create-todo/${email_id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -21,7 +21,7 @@ const AddPage = () => {
         }
 
         setLoading(false);
-        navigate.push(`/todos/${id}`);
+        navigate.push(`/todos/${email_id}`);
         toast.success(`'${data.title}' Added Successfully`);
       })
       .catch((err) => {

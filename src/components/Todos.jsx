@@ -6,10 +6,10 @@ import { FaHandPointRight } from "react-icons/fa";
 const Todos = () => {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { id } = useParams();
+  const { email_id } = useParams();
 
   useEffect(() => {
-    fetch(`https://todo-backend-ten-tau.vercel.app/todos/${id}`)
+    fetch(`https://todo-backend-ten-tau.vercel.app/todos/${email_id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error fetching Json data");
@@ -25,7 +25,7 @@ const Todos = () => {
         setIsLoading(false);
         console.error("Error fetching todos", error);
       });
-  }, [id]);
+  }, [email_id]);
 
   return (
     <>
@@ -40,7 +40,7 @@ const Todos = () => {
         <main className="text-center mx-10  mt-10 sm:flex sm:justify-center sm:items-center">
           {todos.length === 0 ? (
             <NavLink
-              to={`/add-todo/${id}`}
+              to={`/add-todo/${email_id}`}
               className="text-blue-700 text-2xl hover:text-blue-800"
             >
               No todos: <span className="underline">Click here To add</span>
@@ -53,7 +53,7 @@ const Todos = () => {
               {todos.map((todo) => (
                 <li key={todo.todo_id}>
                   <NavLink
-                    to={`/todo/${todo.todo_id}`}
+                    to={`/todos/${todo.email_id}/todo/${todo.todo_id}`}
                     className="flex items-center justify-center space-x-40 hover:shadow-red-900 hover:shadow-2xl transition-all duration-200"
                   >
                     <h2 className="text-2xl text-red-500 w-20 text-start sm:ml-2 capitalize">

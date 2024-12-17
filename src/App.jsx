@@ -9,7 +9,7 @@ import "react-toastify/ReactToastify.css";
 import EditPage from "./page/EditPage";
 import Footer from "./components/Footer";
 import ContactUs from "./page/ContactUs";
-import LogInOrSignUp from "./page/LogInOrSignUp";
+import LOgOrSignPage from "./page/LogOrSignPage";
 
 const App = () => {
   return (
@@ -20,18 +20,18 @@ const App = () => {
         <div className="flex-grow">
           <Switch>
             <Route exact path="/">
-              <LogInOrSignUp />
+              <LOgOrSignPage />
             </Route>
-            <Route path="/todos/:id">
+            <Route exact path="/todos/:email_id">
               <HomePage />
             </Route>
-            <Route path="/add-todo/:id">
+            <Route path="/add-todo/:email_id">
               <AddPage />
             </Route>
-            <Route path="/todo/:id">
+            <Route path="/todos/:email_id/todo/:todo_id">
               <Todopage />
             </Route>
-            <Route path="/edit/:id">
+            <Route path="/todos/:email_id/edit/:todo_id">
               <EditPage />
             </Route>
             <Route path="/contact-us">
