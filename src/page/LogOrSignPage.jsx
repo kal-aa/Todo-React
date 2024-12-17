@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import LogOrSign from "../components/LogOrSign";
 
@@ -9,6 +9,7 @@ const LOgOrSignPage = () => {
   const [signErrorMessage, setSignErrorMessage] = useState("");
   const [isLogging, setIsLogging] = useState(false);
   const [isSigning, setIsSigning] = useState(false);
+  let timeoutRef = useRef(null);
   const navigate = useHistory();
 
   const handleLogIn = (e) => {
@@ -22,7 +23,8 @@ const LOgOrSignPage = () => {
         if (!res.ok) {
           return res.json().then((err) => {
             setLogErrorMessage(err.message);
-            setTimeout(() => {
+            timeoutRef.current && clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
               setLogErrorMessage("");
             }, 3000);
             throw new Error("Error fetchig logging email_id");
@@ -53,7 +55,8 @@ const LOgOrSignPage = () => {
         if (!res.ok) {
           return res.json().then((err) => {
             setSignErrorMessage(err.message);
-            setTimeout(() => {
+            timeoutRef.current && clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
               setSignErrorMessage("");
             }, 3000);
             throw new Error("Error posting email");

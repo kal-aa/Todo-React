@@ -27,11 +27,9 @@ const LogOrSign = ({ singLogValue, signlogError, handleLogSign }) => {
             className="inputStyles"
           />
           <button type="submit" className="btnStyles">
-            Log in
-            {isLogging ? (
+            {isLogging ? "logging" : "Log in"}
+            {isLogging && (
               <ClipLoader size={15} color="white" className="-mb-1 ml-1" />
-            ) : (
-              ""
             )}
           </button>
         </div>
@@ -49,11 +47,9 @@ const LogOrSign = ({ singLogValue, signlogError, handleLogSign }) => {
             className="inputStyles"
           />
           <button type="submit" className="btnStyles">
-            Sign up{" "}
-            {isSigning ? (
-              <ClipLoader size={15} color="white" className="-mb-1" />
-            ) : (
-              ""
+            {isSigning ? "signing" : "Sign up"}
+            {isSigning && (
+              <ClipLoader size={15} color="white" className="-mb-1 ml-1" />
             )}
           </button>
         </div>
