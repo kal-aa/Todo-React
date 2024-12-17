@@ -15,7 +15,9 @@ const Header = () => {
     <header className="flex justify-around py-5 px-5 bg-slate-200">
       {/* Left part */}
       <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500">
-        <FaTasks className="inline mr-2 text-2xl text-red-800 mb-1" />
+        <NavLink to="/">
+          <FaTasks className="inline mr-2 text-2xl text-red-800 mb-1" />
+        </NavLink>
         Todo
       </div>
 
