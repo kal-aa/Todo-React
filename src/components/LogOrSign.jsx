@@ -1,7 +1,15 @@
 import PropTypes from "prop-types";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const LogOrSign = ({ singLogValue, signlogError, handleLogSign }) => {
-  const { logEmail, setLogEmail, signEmail, setSignEmail } = singLogValue;
+  const {
+    logEmail,
+    setLogEmail,
+    signEmail,
+    setSignEmail,
+    isLogging,
+    isSigning,
+  } = singLogValue;
   const { logErrorMessage, signErrorMessage } = signlogError;
   const { handleLogIn, handleSignUp } = handleLogSign;
   return (
@@ -20,6 +28,11 @@ const LogOrSign = ({ singLogValue, signlogError, handleLogSign }) => {
           />
           <button type="submit" className="btnStyles">
             Log in
+            {isLogging ? (
+              <ClipLoader size={15} color="white" className="-mb-1 ml-1" />
+            ) : (
+              ""
+            )}
           </button>
         </div>
       </form>
@@ -36,7 +49,12 @@ const LogOrSign = ({ singLogValue, signlogError, handleLogSign }) => {
             className="inputStyles"
           />
           <button type="submit" className="btnStyles">
-            Sign up
+            Sign up{" "}
+            {isSigning ? (
+              <ClipLoader size={15} color="white" className="-mb-1" />
+            ) : (
+              ""
+            )}
           </button>
         </div>
       </form>
@@ -50,15 +68,17 @@ LogOrSign.propTypes = {
     setLogEmail: PropTypes.func,
     signEmail: PropTypes.string,
     setSignEmail: PropTypes.func,
-  }),
+    isLogging: PropTypes.bool.isRequired,
+    isSigning: PropTypes.bool.isRequired,
+  }).isRequired,
   signlogError: PropTypes.shape({
     logErrorMessage: PropTypes.string,
     signErrorMessage: PropTypes.string,
-  }),
+  }).isRequired,
   handleLogSign: PropTypes.shape({
     handleLogIn: PropTypes.func,
     handleSignUp: PropTypes.func,
-  }),
+  }).isRequired,
 };
 
 export default LogOrSign;
